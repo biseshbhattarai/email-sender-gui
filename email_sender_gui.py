@@ -1,3 +1,6 @@
+
+
+
 import tkinter as tk
 from tkinter import *
 import smtplib
@@ -43,6 +46,7 @@ class MainApplication(tk.Frame):
         print(email)
         fromaddr = email
         receiver_email = self.receiver_entry.get()
+        sender_pass = self.entry_2.get()
         print(receiver_email)
         toaddr = receiver_email
         msg = MIMEMultipart()
@@ -61,18 +65,13 @@ class MainApplication(tk.Frame):
         server.ehlo()
         server.starttls()
 
-        server.login(fromaddr , '"hello"bisesh18')
+        server.login(fromaddr , sender_pass)
         
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
         print("Message was succesfully sent")
 
-
-
-
-
-        
 
 if __name__ == "__main__":
     root = tk.Tk()
